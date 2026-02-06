@@ -3,25 +3,31 @@ let budget = Number(localStorage.getItem("budget"));
 
 document.getElementById("total").innerText = total;
 
+// Start camera scanner
+Quagga.init({
+  inputStream: {
+    type: "LiveStream",
+    target: document.querySelector('#scanner')
+  },
+  decoder: {
+    readers: ["ean_reader", "code_128_reader"]
+  }
+}, function(err) {
+  if (!err) Quagga.start();
+});
+
+Quagga.onDetected(data => {
+  document.getElementById("barcode").value = data.codeResult.code;
+});
+
 function addItem() {
   const price = Number(document.getElementById("price").value);
-
-  if (!price || price <= 0) {
-    alert("Enter valid price");
-    return;
-  }
+  if (!price) return alert("Enter price");
 
   total += price;
   localStorage.setItem("total", total);
   document.getElementById("total").innerText = total;
 
-  if (total > budget) {
-    document.getElementById("status").innerText =
-      "⚠️ Budget exceeded!";
-    document.getElementById("status").style.color = "red";
-  } else {
-    document.getElementById("status").innerText =
-      "✅ Within budget";
-    document.getElementById("status").style.color = "green";
-  }
-}
+  document.getElementById("status").innerText =
+    total > budget ? "⚠️ Budget Exceeded" : "✅ Within Budget";
+    }
