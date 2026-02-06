@@ -9,17 +9,30 @@
 <div class="container">
   <h2>Scan Product</h2>
 
+  <!-- Scanner Area -->
   <div id="scanner"></div>
 
+  <!-- Product Inputs -->
   <input type="text" id="barcode" placeholder="Barcode" readonly>
   <input type="number" id="price" placeholder="Price (₹)">
   <button onclick="addItem()">Add Item</button>
 
-  <h3>Total: ₹<span id="total">0</span></h3>
+  <!-- ADD THIS PART HERE -->
+  <hr>
+
+  <h3>🛒</h3>
+
+  <ul id="cartList"></ul>
+
+  <h3>Total: ₹<span id="totalAmount">0</span></h3>
+
   <p id="status"></p>
 </div>
 
+<!-- Scripts -->
 <script src="https://unpkg.com/quagga/dist/quagga.min.js"></script>
+<script src="js/cart.js"></script>
 <script src="js/scanner.js"></script>
+
 </body>
 </html>
