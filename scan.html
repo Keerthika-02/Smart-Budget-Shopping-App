@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Scan Products</title>
+  <title>Scan Product</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -9,16 +9,17 @@
 <div class="container">
   <h2>Scan Product</h2>
 
-  <input type="text" id="barcode" placeholder="Enter Barcode">
+  <div id="scanner"></div>
+
+  <input type="text" id="barcode" placeholder="Barcode" readonly>
   <input type="number" id="price" placeholder="Price (₹)">
   <button onclick="addItem()">Add Item</button>
 
   <h3>Total: ₹<span id="total">0</span></h3>
   <p id="status"></p>
-
-  <a href="analytics.html">📊 View Analytics</a>
 </div>
 
+<script src="https://unpkg.com/quagga/dist/quagga.min.js"></script>
 <script src="js/scanner.js"></script>
 </body>
 </html>
